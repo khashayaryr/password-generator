@@ -42,7 +42,7 @@ class MemorablePassword(PasswordGenerator):
                  words_num: int = 4,
                  separator: str = '-',
                  capitalize: bool = True,
-                 words_source: str = 'data/words.txt'
+                 words_source: str = 'src/data/words.txt'
                  ):
         self.words_num = words_num
         self.separator = separator
@@ -57,7 +57,7 @@ class MemorablePassword(PasswordGenerator):
         if self.capitalize:
             while True:
                 selected_words = [word.capitalize() if random.choice([True, False]) else word for word in selected_words]
-                if any(word.iscapitalize() for word in selected_words):
+                if any(word.lower() == word for word in selected_words):
                     break
         password = self.separator.join(selected_words)
         return password
